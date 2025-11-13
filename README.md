@@ -60,138 +60,58 @@ This project demonstrates:
         └─────────────────────────┘
 
 Screenshots:
-![App Screenshot](../assets/readme/cred.png)
+
+<img width="957" height="503" alt="image" src="https://github.com/user-attachments/assets/4fd5e290-a64a-4f2e-9a3c-a15bed2589ef" />
 
 
-# 🧭 **API Documentation**
-
-Base URL (local):
-http://127.0.0.1:8000
-
-csharp
-Copy code
-
-### **GET /refunds**
-Returns list of refunds.
-
-### **POST /refunds/seed**
-Seeds sample refunds.
-
-### **POST /refunds**
-Creates a new refund:
-```json
-{
-  "txn_id": "TXN-5555",
-  "merchant": "Amazon",
-  "amount": 1299.0
-}
-POST /refunds/{id}/advance
-Moves refund to next stage.
-
-POST /refunds/{id}/escalate
-Creates escalation record and returns:
-
-json
-Copy code
-{
-  "msg": "escalation created",
-  "dispute_note": "Attach proof…"
-}
 🛠️ Tech Stack
 Frontend
+
 Flutter 3.x
 
 Material 3
 
 REST API integration
 
-ValueKeys + rebuild-safe UI
+ValueKeys for stable rebuilds
 
 Backend
+
 Python 3.11
 
 FastAPI
 
+Pydantic
+
 Uvicorn
 
-pydantic
-
-CORS middleware
+CORS Middleware
 
 DevOps
+
 Docker
 
 GitHub
 
-Hot Reload & Hot Restart
-
-⚙️ Local Setup Instructions
-1️⃣ Clone the project
-sh
-Copy code
-git clone https://github.com/<your-user>/cred_payment_suite.git
-cd cred_payment_suite
-2️⃣ Run the Backend (FastAPI)
-Install dependencies
-sh
-Copy code
-cd backend
-pip install -r requirements.txt
-Start the server
-sh
-Copy code
-uvicorn main:app --reload --port 8000
-Swagger UI:
-
-arduino
-Copy code
-http://127.0.0.1:8000/docs
-3️⃣ Run Flutter Frontend
-sh
-Copy code
-cd flutter_app/cred_payment_suite
-flutter pub get
-flutter run -d chrome
-🐳 Run Backend via Docker
-Build image:
-sh
-Copy code
-docker build -t cred-refunds-api .
-Run:
-sh
-Copy code
-docker run -p 8000:8000 cred-refunds-api
-Backend now available at:
-
-cpp
-Copy code
-http://127.0.0.1:8000
-🔮 Future Enhancements
-Feature	Status
-Persist refunds in SQLite/Postgres	⏳ Planned
-JWT-based authentication	⏳ Planned
-Merchant logos in UI	⏳ Planned
-PDF generation for escalations	⏳ Planned
-Real CRED-style UI animations	⏳ Planned
-Dark mode	⏳ Planned
-Push notifications	⏳ Planned
+Hot Reload / Hot Restart
 
 🏁 Why This Project Stands Out
-Clean architecture
 
-Solid API design
+Clean and modular code
 
-Real-world payment workflow logic
+Real payment workflow logic
 
 Professional UI polish
 
-Docker + testing ready
+Docker setup
 
-Perfect for interviews or product demos
+Excellent for interviews or demos
 
 🙌 Author
+
 Stephen Thomas
 Flutter Dev • Backend Engineer • Full-Stack Builder
 Karunya Institute of Technology & Sciences
 
-👍 If this project impresses you, consider giving it a ⭐ on GitHub!
+⭐ If this project impressed you, please star the repo!
+
