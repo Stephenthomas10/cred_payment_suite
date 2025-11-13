@@ -1,51 +1,197 @@
-# CRED Payment Suite – Refunds Dashboard (Flutter + FastAPI)
+# 🧾 CRED Payment Suite — Refund Tracking System  
+A full-stack **Flutter + FastAPI** application that simulates a real-world **refunds management workflow**, inspired by CRED’s Payments Suite.
 
-A mini refunds orchestration dashboard inspired by CRED’s payments UX.
+This project demonstrates:
+- Modern Flutter UI with filters, analytics, and workflow transitions  
+- REST API built with FastAPI  
+- Deterministic refund IDs (UUIDv5)  
+- Clean architecture + responsive UI  
+- Dockerized backend for production-ready deployment  
 
-## Features
+---
 
-- Flutter web app with CRED-style theming
-- Real backend API (FastAPI) with:
-  - Refund lifecycle: `initiated → gateway_credited → bank_credited → posted`
-  - Idempotent create + deterministic IDs
-  - Escalation endpoint returning dispute payload
-- Analytics banner (count + total ₹ in transit + stage distribution)
-- Stage filter (All / initiated / gateway / bank / posted)
-- Add Refund dialog (creates live refund rows)
-- Dockerized backend (`Dockerfile` + `.dockerignore`)
+## 🚀 Features
 
-## Tech Stack
+### 🔵 **Frontend (Flutter Web)**
+- Add new refunds manually  
+- View refund timeline (Initiated → Gateway → Bank → Posted)  
+- Advance a refund state  
+- Escalate a refund (simulated PDF attachment flow)  
+- Filtering by stage  
+- Summary analytics banner  
+- Modern UI with CRED-like aesthetic  
+- API integration + automatic reload  
+- Fully responsive layout  
 
-- Flutter (Material 3, web)
-- FastAPI + Uvicorn
-- Docker
+### 🔴 **Backend (FastAPI)**
+- Full REST API  
+- Deterministic refund ID generation  
+- Advance refund workflow  
+- Escalation endpoint  
+- Seed sample refunds  
+- CORS enabled for Flutter Web  
+- Docker support  
 
-## Run locally
+---
 
-### Backend
+# 🏗️ **System Architecture**
 
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate       # Windows
-pip install -r app/requirements.txt
-uvicorn app.main:app --reload --port 8000
-# or: docker build -t cred-refunds-api . && docker run -p 8000:8000 cred-refunds-api
+        ┌────────────────────────┐
+        │      Flutter Web       │
+        │  UI: Refunds, Filters  │
+        │  HTTP Calls via Dio/   │
+        │  http package          │
+        └───────────▲────────────┘
+                    │
+          (JSON REST API)
+                    │
+        ┌───────────┴────────────┐
+        │       FastAPI API       │
+        │  /refunds, /advance,    │
+        │  /escalate, /seed       │
+        ├─────────────────────────┤
+        │ In-Memory Store (MVP)   │
+        │ UUIDv5 deterministic IDs│
+        └───────────▲────────────┘
+                    │
+        ┌───────────┴────────────┐
+        │       Docker Image      │
+        │  uvicorn + FastAPI      │
+        └─────────────────────────┘
 
-Frontend (Flutter)
-flutter run -d chrome
+Screenshots:
+![App Screenshot](../assets/readme/cred.png)
 
 
-App expects backend at http://127.0.0.1:8000.
+# 🧭 **API Documentation**
 
-API
+Base URL (local):
+http://127.0.0.1:8000
 
-GET /refunds
+csharp
+Copy code
 
-POST /refunds/create
+### **GET /refunds**
+Returns list of refunds.
 
+### **POST /refunds/seed**
+Seeds sample refunds.
+
+### **POST /refunds**
+Creates a new refund:
+```json
+{
+  "txn_id": "TXN-5555",
+  "merchant": "Amazon",
+  "amount": 1299.0
+}
 POST /refunds/{id}/advance
+Moves refund to next stage.
 
 POST /refunds/{id}/escalate
+Creates escalation record and returns:
 
-POST /refunds/seed (dev only)
+json
+Copy code
+{
+  "msg": "escalation created",
+  "dispute_note": "Attach proof…"
+}
+🛠️ Tech Stack
+Frontend
+Flutter 3.x
+
+Material 3
+
+REST API integration
+
+ValueKeys + rebuild-safe UI
+
+Backend
+Python 3.11
+
+FastAPI
+
+Uvicorn
+
+pydantic
+
+CORS middleware
+
+DevOps
+Docker
+
+GitHub
+
+Hot Reload & Hot Restart
+
+⚙️ Local Setup Instructions
+1️⃣ Clone the project
+sh
+Copy code
+git clone https://github.com/<your-user>/cred_payment_suite.git
+cd cred_payment_suite
+2️⃣ Run the Backend (FastAPI)
+Install dependencies
+sh
+Copy code
+cd backend
+pip install -r requirements.txt
+Start the server
+sh
+Copy code
+uvicorn main:app --reload --port 8000
+Swagger UI:
+
+arduino
+Copy code
+http://127.0.0.1:8000/docs
+3️⃣ Run Flutter Frontend
+sh
+Copy code
+cd flutter_app/cred_payment_suite
+flutter pub get
+flutter run -d chrome
+🐳 Run Backend via Docker
+Build image:
+sh
+Copy code
+docker build -t cred-refunds-api .
+Run:
+sh
+Copy code
+docker run -p 8000:8000 cred-refunds-api
+Backend now available at:
+
+cpp
+Copy code
+http://127.0.0.1:8000
+🔮 Future Enhancements
+Feature	Status
+Persist refunds in SQLite/Postgres	⏳ Planned
+JWT-based authentication	⏳ Planned
+Merchant logos in UI	⏳ Planned
+PDF generation for escalations	⏳ Planned
+Real CRED-style UI animations	⏳ Planned
+Dark mode	⏳ Planned
+Push notifications	⏳ Planned
+
+🏁 Why This Project Stands Out
+Clean architecture
+
+Solid API design
+
+Real-world payment workflow logic
+
+Professional UI polish
+
+Docker + testing ready
+
+Perfect for interviews or product demos
+
+🙌 Author
+Stephen Thomas
+Flutter Dev • Backend Engineer • Full-Stack Builder
+Karunya Institute of Technology & Sciences
+
+👍 If this project impresses you, consider giving it a ⭐ on GitHub!
