@@ -1,0 +1,31 @@
+# Flutter
+/build
+.dart_tool
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.generated/
+
+# Android
+**/android/app/build/
+
+# iOS
+**/ios/Pods/
+**/ios/.symlinks/
+
+# FastAPI / Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+.env
+
+# VSCode / misc
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
